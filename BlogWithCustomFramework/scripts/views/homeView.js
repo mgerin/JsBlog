@@ -1,7 +1,7 @@
 class HomeView {
     constructor (wrapperSelector, mainContentSelector) {
-        this _wrapperSelector = wrapperSelector;
-        this _mainContentSelector = mainContentSelector;
+        this._wrapperSelector = wrapperSelector;
+        this._mainContentSelector = mainContentSelector;
     }
 
     showGuestPage (sideBarData, mainData) {
@@ -11,7 +11,16 @@ class HomeView {
             let renderedWrapper = Mustache.render(template, null);
 
             $(_that._wrapperSelector).html(renderedWrapper);
-        })
+
+            $.get('templates/recent-posts.html', function (template) {
+                let recentPosts = {
+                    recentPosts: sideBarData
+                };
+
+                let renederedRecentPosts = Mustache.render(template, recentPosts);
+                $('.recent-posts').html(renederedRecentPosts);
+            });
+        });
     }
 
     showUserPage (sideBarData, mainData) {

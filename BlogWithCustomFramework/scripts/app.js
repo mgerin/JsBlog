@@ -15,6 +15,14 @@
     let mainContentSelector = ".main-content";
 
     // Create HomeView, HomeController, UserView, UserController, PostView and PostController
+    let homeView = new HomeView(mainContentSelector, selector);
+    let homeController = new HomeController(homeView);
+
+    let userView = new UserView(mainContentSelector, selector);
+    let userController = new UserController(userView);
+
+    let postView = new PostView(mainContentSelector, selector);
+    let postController = new PostController(postView);
 
     initEventServices();
 
