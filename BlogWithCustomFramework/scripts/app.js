@@ -9,6 +9,8 @@
 
     //Create AuthorizationService and Requester
     let authService = new AuthorizationService(baseUrl, appKey, appSecret, _guestCredentials);
+
+    authService.initAuthorizationType("Kinvey");
     let requester = new Requester(authService);
 
     let selector = ".wrapper";
@@ -16,6 +18,7 @@
 
     // Create HomeView, HomeController, UserView, UserController, PostView and PostController
     let homeView = new HomeView(mainContentSelector, selector);
+    homeView.showGuestPage();
     let homeController = new HomeController(homeView);
 
     let userView = new UserView(mainContentSelector, selector);
