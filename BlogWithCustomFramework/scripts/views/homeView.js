@@ -21,6 +21,7 @@ class HomeView {
                 $('.recent-posts').html(renderedRecentPosts);
             });
 
+
             $.get('templates/posts.html', function (template) {
                 let blogPosts = {
                     blogPosts: mainData

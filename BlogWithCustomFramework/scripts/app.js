@@ -7,17 +7,20 @@
     let appSecret = "87fc022e7df043478ba1e9d1bd408afe"; // Place your appSecret from Kinvey here...
     let _guestCredentials = "123b2c20-8717-4059-827f-31c029d98dab.0owoXu4fHxA1DrZcz/Qp9y4Of3ZflDQzEGkAkBlWOsk="; // Create a guest user using PostMan/RESTClient/Fiddler and place his authtoken here...
 
+
+    let selector = ".wrapper";
+    let mainContentSelector = ".main-content";
+
     //Create AuthorizationService and Requester
     let authService = new AuthorizationService(baseUrl, appKey, appSecret, _guestCredentials);
 
     authService.initAuthorizationType("Kinvey");
     let requester = new Requester(authService);
 
-    let selector = ".wrapper";
-    let mainContentSelector = ".main-content";
+
 
     // Create HomeView, HomeController, UserView, UserController, PostView and PostController
-    let homeView = new HomeView(mainContentSelector, selector);
+    let homeView = new HomeView(selector, mainContentSelector);
     homeView.showGuestPage();
     let homeController = new HomeController(homeView);
 
