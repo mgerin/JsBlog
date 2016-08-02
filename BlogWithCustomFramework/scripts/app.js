@@ -21,8 +21,8 @@
 
     // Create HomeView, HomeController, UserView, UserController, PostView and PostController
     let homeView = new HomeView(selector, mainContentSelector);
-    homeView.showGuestPage();
-    let homeController = new HomeController(homeView);
+    let homeController = new HomeController(homeView, requester, baseUrl, appKey);
+    homeController.showGuestPage();
 
     let userView = new UserView(mainContentSelector, selector);
     let userController = new UserController(userView);
