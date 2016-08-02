@@ -15,7 +15,21 @@ class UserController {
     }
 
     login(requestData) {
+        let requestUrl = this._baseServiceUrl + "login";
 
+        this._requster.post(requestUrl, requestData,
+        function success(data) {
+            showPopup('success', "You have successfully loged in.");
+
+            sessionStorage['_authToken'] = data._kmd.authtoken;
+            sessionStorage['username'] = data.username;
+            sessionStorage['fullname'] = data.fullname;
+
+            redirectUrl("#/");
+        },
+        function error(data) {
+            showPopup('error', "An error has occurred while attempting to login.");
+        });
     }
 
     register(requestData) {
@@ -38,9 +52,23 @@ class UserController {
             showPopup('error', "Passwords do not match.");
             return;
         }
+
+        delete requestData['confirmPassword'];
+
+        let requestUrl = this._baseServiceUrl;
+
+        this._requster.post(requestUrl, requestData,
+        function success(data) {
+            showPopup('success', "You have successfully registered.");
+            redirectUrl("#/login");
+        },
+        function error(data) {
+            showPopup('error', "An error has occurred while attempting to register.");
+        });
     }
 
     logout() {
-
+        sessionStorage.clear();
+        redirectUrl("#/")
     }
 }

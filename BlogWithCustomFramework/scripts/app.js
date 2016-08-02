@@ -17,15 +17,13 @@
     authService.initAuthorizationType("Kinvey");
     let requester = new Requester(authService);
 
-
-
     // Create HomeView, HomeController, UserView, UserController, PostView and PostController
     let homeView = new HomeView(selector, mainContentSelector);
     let homeController = new HomeController(homeView, requester, baseUrl, appKey);
-    homeController.showGuestPage();
 
-    let userView = new UserView(mainContentSelector, selector);
-    let userController = new UserController(userView);
+    let userView = new UserView(selector, mainContentSelector);
+    let userController = new UserController(userView, requester, baseUrl, appKey);
+    userController.showRegisterPage();
 
     let postView = new PostView(mainContentSelector, selector);
     let postController = new PostController(postView);
