@@ -1,9 +1,9 @@
 class UserController {
     constructor (userView, requester, baseUrl, appKey) {
         this._userView = userView;
-        this._requster = requester;
+        this._requester = requester;
         this._appKey = appKey;
-        this._baseServiceUrl = baseUrl + "/user" + appKey + "/";
+        this._baseServiceUrl = baseUrl + "/user/" + appKey + "/";
     }
 
     showLoginPage(isLoggedIn) {
@@ -17,7 +17,7 @@ class UserController {
     login(requestData) {
         let requestUrl = this._baseServiceUrl + "login";
 
-        this._requster.post(requestUrl, requestData,
+        this._requester.post(requestUrl, requestData,
         function success(data) {
             showPopup('success', "You have successfully loged in.");
 
@@ -57,7 +57,7 @@ class UserController {
 
         let requestUrl = this._baseServiceUrl;
 
-        this._requster.post(requestUrl, requestData,
+        this._requester.post(requestUrl, requestData,
         function success(data) {
             showPopup('success', "You have successfully registered.");
             redirectUrl("#/login");
